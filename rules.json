@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Move PDF",
+    "criteria": "Extension",
+    "rule_type": "Equals",
+    "value": ".pdf",
+    "destination": "C:/Users/hamis/Desktop/PDF"
+  },
+  {
+    "name": "Move Images",
+    "criteria": "Extension",
+    "rule_type": "Equals",
+    "value": ".jpg",
+    "destination": "C:/Users/hamis/Desktop/Images"
+  },
+  {
+    "name": "Move Text Files",
+    "criteria": "Extension",
+    "rule_type": "Equals",
+    "value": ".txt",
+    "destination": "C:/Users/hamis/Desktop/TextFiles"
+  }
+]
