@@ -9,7 +9,7 @@ import multiprocessing
 from rule import Rule
 
 class FileAnalyzer:
-    """AI-like file analyzer to discover patterns and suggest organization rules"""
+    """AI-like file analyzer to discover patterns and suggest organisation rules"""
     
     def __init__(self):
         self.file_types = collections.defaultdict(int)
@@ -185,7 +185,7 @@ class FileAnalyzer:
         report.append("")
         
         # Generate rule suggestions
-        report.append("== Suggested Organization Rules ==")
+        report.append("== Suggested organisation Rules ==")
         rules = self._suggest_rules(directory_path)
         
         if not rules:
@@ -200,7 +200,7 @@ class FileAnalyzer:
         return "\n".join(report)
     
     def _suggest_rules(self, base_directory):
-        """Suggest organization rules based on analysis
+        """Suggest organisation rules based on analysis
         
         Returns:
             list: List of Rule objects
@@ -210,13 +210,13 @@ class FileAnalyzer:
         # Get parent directory path for destination suggestions
         parent_dir = os.path.dirname(base_directory.rstrip('/\\'))
         
-        # Rule 1: Organize by file type if there are multiple types
+        # Rule 1: organise by file type if there are multiple types
         if len(self.file_types) > 1:
             for file_type, count in sorted(self.file_types.items(), key=lambda x: x[1], reverse=True):
                 if count >= 3:  # Only suggest for types with at least 3 files
                     if file_type == "image":
                         rule = Rule(
-                            name=f"Images Organization",
+                            name=f"Images organisation",
                             criteria="Content Type",
                             rule_type="Contains",
                             value="image/",
@@ -225,7 +225,7 @@ class FileAnalyzer:
                         rules.append(rule)
                     elif file_type == "audio":
                         rule = Rule(
-                            name=f"Audio Organization",
+                            name=f"Audio organisation",
                             criteria="Content Type",
                             rule_type="Contains",
                             value="audio/",
@@ -234,7 +234,7 @@ class FileAnalyzer:
                         rules.append(rule)
                     elif file_type == "video":
                         rule = Rule(
-                            name=f"Video Organization",
+                            name=f"Video organisation",
                             criteria="Content Type",
                             rule_type="Contains",
                             value="video/",
@@ -244,7 +244,7 @@ class FileAnalyzer:
                     elif file_type == "text" or file_type == "application":
                         # For documents, check for common extensions
                         doc_rule = Rule(
-                            name=f"Documents Organization",
+                            name=f"Documents organisation",
                             criteria="Extension",
                             rule_type="Equals",
                             value=".pdf,.doc,.docx,.txt,.rtf,.odt",
@@ -254,7 +254,7 @@ class FileAnalyzer:
                         
                         # For spreadsheets
                         spreadsheet_rule = Rule(
-                            name=f"Spreadsheets Organization",
+                            name=f"Spreadsheets organisation",
                             criteria="Extension",
                             rule_type="Equals",
                             value=".xls,.xlsx,.csv,.ods",
@@ -262,7 +262,7 @@ class FileAnalyzer:
                         )
                         rules.append(spreadsheet_rule)
         
-        # Rule 2: Organize by date if date patterns were found
+        # Rule 2: organise by date if date patterns were found
         if self.date_patterns:
             current_year = datetime.now().year
             # For recent years
@@ -277,7 +277,7 @@ class FileAnalyzer:
                     )
                     rules.append(rule)
         
-        # Rule 3: Organize large files if any were found
+        # Rule 3: organise large files if any were found
         if self.size_categories.get("large", 0) + self.size_categories.get("very_large", 0) >= 5:
             rule = Rule(
                 name="Large Files",

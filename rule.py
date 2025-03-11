@@ -6,7 +6,7 @@ from datetime import datetime
 from pathlib import Path
 
 class Rule:
-    """Represents a file organization rule"""
+    """Represents a file organisation rule"""
     def __init__(self, name, criteria, rule_type, value, destination):
         self.name = name
         self.criteria = criteria  # Extension, Name Pattern, Content Type, Creation Date, Size

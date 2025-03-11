@@ -5,7 +5,7 @@ from pathlib import Path
 from rule import Rule
 
 class FileOrganizer:
-    """Manages file organization rules and applies them to directories"""
+    """Manages file organisation rules and applies them to directories"""
     
     def __init__(self):
         self.rules = []
