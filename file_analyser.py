@@ -8,8 +8,8 @@ from pathlib import Path
 import multiprocessing
 from rule import Rule
 
-class FileAnalyzer:
-    """AI-like file analyzer to discover patterns and suggest organisation rules"""
+class Fileanalyser:
+    """AI-like file analyser to discover patterns and suggest organisation rules"""
     
     def __init__(self):
         self.file_types = collections.defaultdict(int)
@@ -21,12 +21,12 @@ class FileAnalyzer:
         # Initialize mime types
         mimetypes.init()
         
-    def analyze_directory(self, directory_path, max_files=1000):
-        """Analyze files in a directory and generate insights
+    def analyse_directory(self, directory_path, max_files=1000):
+        """analyse files in a directory and generate insights
         
         Args:
-            directory_path (str): Path to directory to analyze
-            max_files (int): Maximum number of files to analyze
+            directory_path (str): Path to directory to analyse
+            max_files (int): Maximum number of files to analyse
             
         Returns:
             str: Analysis results
@@ -52,9 +52,9 @@ class FileAnalyzer:
             if len(all_files) >= max_files:
                 break
                 
-        # Use multiprocessing to analyze files
+        # Use multiprocessing to analyse files
         with multiprocessing.Pool(processes=max(1, multiprocessing.cpu_count() - 1)) as pool:
-            results = pool.map(self._analyze_file, all_files)
+            results = pool.map(self._analyse_file, all_files)
             
         # Process results
         for file_type, name_pattern, date_pattern, size_category, prefix in results:
@@ -72,8 +72,8 @@ class FileAnalyzer:
         # Generate insights and suggestions
         return self._generate_report(directory_path)
     
-    def _analyze_file(self, file_path):
-        """Analyze a single file and return insights
+    def _analyse_file(self, file_path):
+        """analyse a single file and return insights
         
         Returns:
             tuple: (file_type, name_pattern, date_pattern, size_category, prefix)
@@ -161,12 +161,12 @@ class FileAnalyzer:
         """
         total_files = sum(self.file_types.values())
         if total_files == 0:
-            return "No files were analyzed."
+            return "No files were analysed."
             
         report = []
         report.append(f"=== File Analysis Report ===")
         report.append(f"Directory: {directory_path}")
-        report.append(f"Files analyzed: {total_files}\n")
+        report.append(f"Files analysed: {total_files}\n")
         
         # File type distribution
         report.append("== File Type Distribution ==")
